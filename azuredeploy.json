@@ -245,7 +245,15 @@
             ],
             "properties": {
                 "name": "[variables('webAppName')]",
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServiceName'))]"
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServiceName'))]",
+                "siteConfig": {
+                    "connectionStrings": [
+                      {
+                        "name": "storage",
+                        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',concat(listKeys(variables('storageAccountId'),'2015-05-01-preview').key1))]",
+                            "type": "Custom"
+                      }
+                    ]
             },
             "resources": [
                 {
@@ -268,7 +276,7 @@
                 },
                 {
                     "type": "Microsoft.Web/sites/extensions",
-                    "apiVersion": "2018-02-01",
+                    "apiVersion": "2015-08-01",
                     "name": "[concat(variables('webAppName'),'/MsDeploy')]",
                     "location": "[parameters('location')]",
                     "dependsOn": [
@@ -278,7 +286,7 @@
                     "properties": {
                         "addOnPackages": [
                             {
-                                "packageUri": "https://kspwebstorageaccount.blob.core.windows.net/kspwebstoragecontainer/AzurePortal-10-sep.zip?sp=r&st=2019-09-11T04:37:16Z&se=2019-09-30T12:37:16Z&spr=https&sv=2018-03-28&sig=lCOTWZ82mqIhP7nMTjZEnZiU3%2FD2VlmCg6Z1DuHEreY%3D&sr=b"
+                                "packageUri": "https://kspwebstorageaccount.blob.core.windows.net/kspwebstoragecontainer/Portal.zip?sp=r&st=2019-09-17T10:04:20Z&se=2019-10-31T18:04:20Z&spr=https&sv=2018-03-28&sig=cfSL54JQb6wvZWLkbU6sO1tpLs6jf5joJIN0ka5FBko%3D&sr=b"
                             }
                         ]
                     }
