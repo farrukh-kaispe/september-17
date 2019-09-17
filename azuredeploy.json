@@ -251,10 +251,10 @@
                 {
                     "type": "config",
                     "apiVersion": "2015-08-01",
-                    "name":  "[concat(variables('webAppName'),'/connectionstrings')]",
+                    "name": "connectionstrings",
                     "dependsOn": [
                         "[concat('Microsoft.Web/sites/', variables('webAppName'))]",
-                        "[concat('Microsoft.Web/Sites/', variables('webAppName'), '/extensions/MsDeploy')]"
+                        "[concat('Microsoft.Web/Sites/', variables('webAppName'), '/extensions/msdeploy')]"
                     ],
                     "tags": {
                         "displayName": "ConnectionString"
