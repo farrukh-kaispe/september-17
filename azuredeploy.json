@@ -245,15 +245,7 @@
             ],
             "properties": {
                 "name": "[variables('webAppName')]",
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServiceName'))]",
-                "siteConfig": {
-                    "connectionStrings": [
-                      {
-                        "name": "storage",
-                        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',concat(listKeys(variables('storageAccountId'),'2015-05-01-preview').key1))]",
-                            "type": "Custom"
-                      }
-                    ]
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServiceName'))]"
             },
             "resources": [
                 {
@@ -276,7 +268,7 @@
                 },
                 {
                     "type": "Microsoft.Web/sites/extensions",
-                    "apiVersion": "2015-08-01",
+                    "apiVersion": "2018-02-01",
                     "name": "[concat(variables('webAppName'),'/MsDeploy')]",
                     "location": "[parameters('location')]",
                     "dependsOn": [
